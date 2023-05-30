@@ -14,12 +14,17 @@ ul
 .container 
 { 
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
 }
 
 .carousel
 {
-    width: 100vw; /* Full Width */
-    height: 100vh;  /* Full Height */
+    margin-top: 1rem; /* Add margin at the top for spacing */
+    width: 80vw; /* Full Width */
+    height: 80vh;  /* Full Height */
     position: relative;  /* Because our buttons will be positioned as "absolute" inside of it */
     display: flex; /* Display as flex container */
     justify-content: space-between; /* Center align items horizontally */
@@ -101,7 +106,7 @@ ul
 
 #play 
 {
-    left: 100rem; /* Positioning the button to the left */
+    left: 50px; /* Positioning the button to the left */
     transform: translateX(-50%); /* Adjust the position to center horizontally */
 }
 
@@ -113,10 +118,55 @@ ul
 
 #reverse 
 {
-    right: 100rem; /* Positioning the button to the right */
+    right: 50px; /* Positioning the button to the right */
     transform: translateX(50%); /* Adjust the position to center horizontally */
 }
 
+/* Sub Carousel */
+#thumbnail-carousel 
+{
+    width: 80vw; /* Full Width */
+    margin: 1rem 0; /* Add margin for spacing */
+    overflow-x: auto; /* Enable horizontal scrolling */
+}
 
+.thumbnails 
+{
+    display: flex; /* Display as flex container */
+    justify-content: flex-start; /* Align items horizontally */
+    align-items: center; /* Align items vertically */
+}
 
+.thumbnail-list 
+{
+    padding: 0; /* Remove default padding */
+    display: flex; /* Display as flex container */
+    justify-content: flex-start; /* Align items horizontally */
+    align-items: center; /* Align items vertically */
+    list-style: none; /* Remove default list styles */
+}
 
+.thumbnail-item 
+{
+    flex: 0 0 auto; /* Prevent items from shrinking */
+    margin-right: 1rem; /* Add margin between items */
+}
+
+.thumbnail-item:last-child 
+{
+    margin-right: 0; /* Remove margin for the last item */
+}
+
+.title
+{
+    font-size: 2rem; /* Font Size */
+    margin-bottom: 1rem; /* Add margin at the bottom for spacing */
+    text-align: center; /* Align text to the center */
+}
+
+.description
+{
+    font-size: 1.5rem; /* Font Size */
+    margin-bottom: 1rem; /* Add margin at the bottom for spacing */
+    text-align: center; /* Align text to the center */
+}
