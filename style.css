@@ -21,6 +21,9 @@ ul
     width: 100vw; /* Full Width */
     height: 100vh;  /* Full Height */
     position: relative;  /* Because our buttons will be positioned as "absolute" inside of it */
+    display: flex; /* Display as flex container */
+    justify-content: space-between; /* Center align items horizontally */
+    align-items: flex-end; /* Align items to the bottom */
 }
 
 .slide
@@ -72,6 +75,7 @@ ul
     color: rgb(255, 255, 255, .5); /* Setting the color of the buttons */
     padding: 0 .5rem;
     background-color: rgb(0, 0, 0, .1);
+    margin-bottom: 1rem; /* Add margin at the bottom for spacing */
 }
 
 .carousel-button:hover, .carousel-button:focus
@@ -93,6 +97,24 @@ ul
 #next
 {
     right: 1rem; /* Positioning the button to the right of the carousel */
+}
+
+#play 
+{
+    left: 100rem; /* Positioning the button to the left */
+    transform: translateX(-50%); /* Adjust the position to center horizontally */
+}
+
+#pause
+{
+    left: 50%; /* Positioning the button to the center horizontally */
+    transform: translateX(-50%); /* Adjust the position to center horizontally */
+}
+
+#reverse 
+{
+    right: 100rem; /* Positioning the button to the right */
+    transform: translateX(50%); /* Adjust the position to center horizontally */
 }
 
 
