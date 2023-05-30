@@ -27,7 +27,7 @@ ul
 {
     position: absolute; /* Position Absolute */
     inset: 0; /* Positioning the slide to the edges of the carousel */
-    display: none; /* Hiding the slides */
+    opacity: 0; /* Hiding the slides */
     transition: opacity 2s ease-in-out; /* Adding a transition effect to the slides */
 }
 

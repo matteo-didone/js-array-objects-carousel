@@ -1,8 +1,3 @@
-
-
-// BONUS 3:
-// Add start/stop buttons and a button to reverse the autoplay mechanism.
-
 // Start creating an array of literal objects
 const images = 
 [
@@ -119,13 +114,13 @@ images.forEach((image, index) => {
 // Call the updateCarousel function to initialize the carousel with the first slide
 updateCarousel();
 
-// Define update carousel function
+// Define the updateCarousel function
 function updateCarousel() 
 {
     // Get all slides
     const slides = document.querySelectorAll('.slide');
 
-    // Loop through all slides and remove 'active' class
+    // Remove 'active' class from all slides
     slides.forEach((slide) => {
         slide.classList.remove('active');
     });
@@ -136,18 +131,17 @@ function updateCarousel()
     // Add 'active' class to the active slide
     activeSlide.classList.add('active');
 
-    // Get the title and description
+    // Get the title and description elements of the active slide
     const title = activeSlide.querySelector('.title');
-    // Get the description
     const description = activeSlide.querySelector('.description');
 
-    // Loop through all slides and hide them
+    // Set the opacity of all slides to 0 to hide them
     slides.forEach((slide) => {
-        slide.style.display = 'none';
+        slide.style.opacity = 0;
     });
 
-    // Show the active slide
-    activeSlide.style.display = 'block';
+    // Set the opacity of the active slide to 1 to show it with a transition effect
+    activeSlide.style.opacity = 1;
 
     // Update the title and description
     title.textContent = images[currentSlide].title;
@@ -204,6 +198,8 @@ startAutoplay();
 // Save the autoplay buttons in variables
 const playButton = document.getElementById('play');
 const pauseButton = document.getElementById('pause');
+const reverseButton = document.getElementById('reverse');
+
 
 // Add click event listener to the play button
 playButton.addEventListener('click', () => {
@@ -223,6 +219,92 @@ pauseButton.addEventListener('click', () => {
         autoplayInterval = null;
     }
 });
+
+// Create function to reverse the order of the images
+function reverseOrder() 
+{
+    images.reverse(); // Reverse the order of the images array
+    ul.innerHTML = ''; // Clear the existing carousel
+
+    // Loop through the images array
+    images.forEach((image, index) => {
+        // Create an <li> element for the thumbnail
+        const thumbnailLi = document.createElement('li');
+
+        // Create an <img> element for the thumbnail
+        const thumbnailImg = document.createElement('img');
+        thumbnailImg.src = image.image; // Set the src attribute to the image URL
+        thumbnailImg.alt = image.title; // Set the alt attribute to the image title
+
+        // Append the <img> element to the <li> element
+        thumbnailLi.appendChild(thumbnailImg);
+
+        // Add class to the thumbnail <li> element
+        thumbnailLi.classList.add('thumbnail');
+
+        // Append the thumbnail <li> element to the <ul> element
+        ul.appendChild(thumbnailLi);
+
+        // Add click event listener to the thumbnail
+            thumbnailLi.addEventListener('click', () => {
+            // Set the current slide to the clicked thumbnail's index
+            currentSlide = index;
+            // Update the carousel
+            updateCarousel();
+        });
+
+        // Create an <li> element for the main slide
+        const slideLi = document.createElement('li');
+
+        // Add class to the main slide <li> element
+        slideLi.classList.add('slide');
+
+        // Check if it's the first slide, set it as active by default
+        if (index === 0) 
+        {
+            slideLi.classList.add('active');
+        }
+
+        // Create an <img> element for the main slide
+        const slideImg = document.createElement('img');
+        slideImg.src = image.image; // Set the src attribute to the image URL
+        slideImg.alt = image.title; // Set the alt attribute to the image title
+
+        // Append the <img> element to the <li> element
+        slideLi.appendChild(slideImg);
+
+        // Create a <div> element for the title
+        const titleDiv = document.createElement('div');
+        titleDiv.classList.add('title');
+        titleDiv.textContent = image.title;
+
+        // Append the titleDiv to the <li> element
+        slideLi.appendChild(titleDiv);
+
+        // Create a <div> element for the description
+        const descriptionDiv = document.createElement('div');
+        descriptionDiv.classList.add('description');
+        descriptionDiv.textContent = image.description;
+
+        // Append the descriptionDiv to the <li> element
+        slideLi.appendChild(descriptionDiv);
+
+        // Add class to the main slide <li> element
+        slideLi.classList.add('slide');
+
+        // Append the main slide <li> element to the <ul> element
+        ul.appendChild(slideLi);
+    });
+
+    currentSlide = 0; // Reset the current slide to the first slide
+    updateCarousel(); // Update the carousel with the reversed order
+}
+
+
+
+// Add click event listener to the reverse button
+reverseButton.addEventListener('click', reverseOrder);
+
 
 
 
