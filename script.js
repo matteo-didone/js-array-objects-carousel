@@ -1,7 +1,5 @@
-// BONUS 1:
-// Add thumbnails and activate the corresponding image upon clicking.
-// BONUS 2:
-// Add autoplay functionality: after a certain period of time (3 seconds), the active image should change to the next one.
+
+
 // BONUS 3:
 // Add start/stop buttons and a button to reverse the autoplay mechanism.
 
@@ -48,17 +46,51 @@ const totalSlides = images.length;
 // Loop through the array of literal objects using forEach method
 // The forEach method takes a callback function as an argument and executes that callback function once for each element in the array
 // Loop through the array of literal objects using forEach method
-images.forEach((image) => {
-    // Create an <li> element
-    const li = document.createElement('li');
+images.forEach((image, index) => {
+    // Create an <li> element for the thumbnail
+    const thumbnailLi = document.createElement('li');
     
-    // Create an <img> element
-    const img = document.createElement('img');
-    img.src = image.image; // Set the src attribute to the image URL
-    img.alt = image.title; // Set the alt attribute to the image title
+    // Create an <img> element for the thumbnail
+    const thumbnailImg = document.createElement('img');
+    thumbnailImg.src = image.image; // Set the src attribute to the image URL
+    thumbnailImg.alt = image.title; // Set the alt attribute to the image title
     
     // Append the <img> element to the <li> element
-    li.appendChild(img);
+    thumbnailLi.appendChild(thumbnailImg);
+
+    // Add class to the thumbnail <li> element
+    thumbnailLi.classList.add('thumbnail');
+
+    // Append the thumbnail <li> element to the <ul> element
+    ul.appendChild(thumbnailLi);
+
+    // Add click event listener to the thumbnail
+    thumbnailLi.addEventListener('click', () => {
+        // Set the current slide to the clicked thumbnail's index
+        currentSlide = index;
+        // Update the carousel
+        updateCarousel();
+    });
+
+    // Create an <li> element for the main slide
+    const slideLi = document.createElement('li');
+
+    // Add class to the main slide <li> element
+    slideLi.classList.add('slide');
+    
+    // Check if it's the first slide, set it as active by default
+    if (index === 0) 
+    {
+        slideLi.classList.add('active');
+    }
+
+    // Create an <img> element for the main slide
+    const slideImg = document.createElement('img');
+    slideImg.src = image.image; // Set the src attribute to the image URL
+    slideImg.alt = image.title; // Set the alt attribute to the image title
+    
+    // Append the <img> element to the <li> element
+    slideLi.appendChild(slideImg);
 
     // Create a <div> element for the title
     const titleDiv = document.createElement('div');
@@ -66,7 +98,7 @@ images.forEach((image) => {
     titleDiv.textContent = image.title;
     
     // Append the titleDiv to the <li> element
-    li.appendChild(titleDiv);
+    slideLi.appendChild(titleDiv);
 
     // Create a <div> element for the description
     const descriptionDiv = document.createElement('div');
@@ -74,13 +106,13 @@ images.forEach((image) => {
     descriptionDiv.textContent = image.description;
     
     // Append the descriptionDiv to the <li> element
-    li.appendChild(descriptionDiv);
+    slideLi.appendChild(descriptionDiv);
     
-    // Add class to the <li> element
-    li.classList.add('slide');
+    // Add class to the main slide <li> element
+    slideLi.classList.add('slide');
     
-    // Append the <li> element to the <ul> element
-    ul.appendChild(li);
+    // Append the main slide <li> element to the <ul> element
+    ul.appendChild(slideLi);
 });
 
 
@@ -92,8 +124,18 @@ function updateCarousel()
 {
     // Get all slides
     const slides = document.querySelectorAll('.slide');
+
+    // Loop through all slides and remove 'active' class
+    slides.forEach((slide) => {
+        slide.classList.remove('active');
+    });
+
     // Get the active slide
     const activeSlide = slides[currentSlide];
+
+    // Add 'active' class to the active slide
+    activeSlide.classList.add('active');
+
     // Get the title and description
     const title = activeSlide.querySelector('.title');
     // Get the description
@@ -135,6 +177,54 @@ nextButton.addEventListener('click', () => {
     // This ensures that when the currentSlide reaches the last slide, it wraps around to the first slide again, creating the loop effect of the carousel.
     updateCarousel();
 });
+
+// Define variable for the autoplay interval
+let autoplayInterval;
+
+// Function to start autoplay
+function startAutoplay() 
+{
+    autoplayInterval = setInterval(() => {
+        // Increment the currentSlide by 1
+        currentSlide = (currentSlide + 1) % totalSlides;
+        // Update the carousel
+        updateCarousel();
+    }, 3000); // Change slide every 3 seconds (3000 milliseconds)
+}
+
+// Function to stop autoplay
+function stopAutoplay() 
+{
+    clearInterval(autoplayInterval);
+}
+
+// Call the startAutoplay function to initiate autoplay
+startAutoplay();
+
+// Save the autoplay buttons in variables
+const playButton = document.getElementById('play');
+const pauseButton = document.getElementById('pause');
+
+// Add click event listener to the play button
+playButton.addEventListener('click', () => {
+    // Start autoplay
+    if (!autoplayInterval) 
+    {
+        startAutoplay();
+    }
+});
+
+// Add click event listener to the pause button
+pauseButton.addEventListener('click', () => {
+    // Stop autoplay
+    if (autoplayInterval)
+    {
+        stopAutoplay();
+        autoplayInterval = null;
+    }
+});
+
+
 
 
 

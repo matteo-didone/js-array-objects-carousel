@@ -27,6 +27,14 @@ ul
 {
     position: absolute; /* Position Absolute */
     inset: 0; /* Positioning the slide to the edges of the carousel */
+    display: none; /* Hiding the slides */
+    transition: opacity 2s ease-in-out; /* Adding a transition effect to the slides */
+}
+
+.slide.active
+{
+    display: block; /* Displaying the active slide */
+    opacity: 1; /* Making the active slide visible */
 }
 
 .slide > img 
@@ -43,6 +51,19 @@ ul
     position: absolute; /* Position Absolute */
     top: 50%; /* Positioning the button to the middle of the carousel */
     transform: translateY(-50%); /* Positioning the button to the middle of the carousel */
+    background: none; /* Removing the background */
+    border: none; /* Removing the border */
+    cursor: pointer; /* Making the cursor a pointer */
+    font-size: 4rem; /* Font Size */
+    z-index: 2; /* Making sure that the buttons are on top of the slides */
+    color: rgb(255, 255, 255, .5); /* Setting the color of the buttons */
+    padding: 0 .5rem;
+    background-color: rgb(0, 0, 0, .1);
+}
+
+.autoplay-button
+{
+    position: absolute; /* Position Absolute */
     background: none; /* Removing the background */
     border: none; /* Removing the border */
     cursor: pointer; /* Making the cursor a pointer */
