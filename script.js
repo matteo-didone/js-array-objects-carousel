@@ -1,65 +1,47 @@
-/**
-Divide the cars into 3 separate arrays:
+// Given an array of literal objects with:
+// image URL
+// title
+// description
+// Create a carousel as shown in the attached photo.
+// Milestone 0:
+// As in the first carousel created, let's first focus on creating the static markup: build the container and insert the large image so that we can style the slider.
+// Milestone 1: Now, remove the static content and dynamically populate the carousel using the array of literal objects.
+// Upon user click on the left or right arrows, the active image should become visible, and we should add the corresponding title and text.
+// Milestone 2:
+// Add the infinite loop functionality to the carousel. If the active thumbnail is the first one and the user clicks the up arrow, the activated thumbnail should be the last one, and vice versa for the last thumbnail if the user clicks the down arrow.
+// BONUS 1:
+// Add thumbnails and activate the corresponding image upon clicking.
+// BONUS 2:
+// Add autoplay functionality: after a certain period of time (3 seconds), the active image should change to the next one.
+// BONUS 3:
+// Add start/stop buttons and a button to reverse the autoplay mechanism.
 
-In the first array, only include petrol cars. // for loop
-In the second array, only include diesel cars. // foreach loop
-In the third array, include the remaining cars. // array.filter
-Finally, print the 3 arrays separately.
-*/
-
-/*Create an array composed of 15 cars.
-Each car object will have the following properties: brand, model, and fuel type (petrol, diesel, LPG, electric, methane).*/
-const cars =
+// Start creating an array of literal objects
+const images = 
 [
-    { brand: 'Audi', model: 'A4', fuel: 'Petrol' },
-    { brand: 'Ford', model: 'Mustang', fuel: 'Petrol' },
-    { brand: 'BMW', model: 'X5', fuel: 'Diesel' },
-    { brand: 'Fiat', model: '500', fuel: 'LPG' },
-    { brand: 'Tesla', model: 'Model 3', fuel: 'Electric' },
-    { brand: 'Fiat', model: 'Panda', fuel: 'Methane' },
-    { brand: 'Audi', model: 'A3', fuel: 'Petrol' },
-    { brand: 'Volkswagen', model: 'Golf', fuel: 'Diesel' },
-    { brand: 'Ford', model: 'Focus', fuel: 'Petrol' },
-    { brand: 'Hyundai', model: 'Sonata', fuel: 'LPG' },
-    { brand: 'Tesla', model: 'Model S', fuel: 'Electric' },
-    { brand: 'Mercedes-Benz', model: 'E-Class', fuel: 'Petrol' },
-    { brand: 'BMW', model: 'X3', fuel: 'Diesel' },
-    { brand: 'Fiat', model: 'Punto', fuel: 'Petrol' }, 
-    { brand: 'Volkswagen', model: 'Polo', fuel: 'Diesel' }
-]
-
-// In the first array, only include petrol cars. // for loop
-const petrolCars = [];
-
-for(let i = 0; i < cars.length; i++)
-{
-    if(cars[i].fuel === 'Petrol')
     {
-        petrolCars.push(cars[i]);
-    }
-}
-
-// Print the array
-console.log(petrolCars);
-
-// In the second array, only include diesel cars. // foreach loop
-const dieselCars = [];
-
-// car is a variable that represents each individual element of the array
-cars.forEach((car) => 
-{
-    // If the fuel type of the car is diesel, push it to the dieselCars array
-    if(car.fuel === 'Diesel')
+        image: 'img/01.webp',
+        title: 'Marvel\'s Spiderman Miles Morale',
+        description: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
+    }, 
     {
-        dieselCars.push(car);
+        image: 'img/02.webp',
+        title: 'Ratchet & Clank: Rift Apart',
+        description: 'Go dimension-hopping with Ratchet and Clank as they take on an evil emperor from another reality.',
+    }, 
+    {
+        image: 'img/03.webp',
+        title: 'Fortnite',
+        description: "Grab all of your friends and drop into Epic Games Fortnite, a massive 100 - player face - off that combines looting, crafting, shootouts and chaos.",
+    }, 
+    {
+        image: 'img/04.webp',
+        title: 'Stray',
+        description: 'Lost, injured and alone, a stray cat must untangle an ancient mystery to escape a long-forgotten city',
+    }, 
+    {
+        image: 'img/05.webp',
+        title: "Marvel's Avengers",
+        description: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
     }
-});
-
-// Print the array
-console.log(dieselCars);
-
-// In the third array, include the remaining cars. // array.filter
-const remainingCars = cars.filter((car) => car.fuel !== 'Petrol' && car.fuel !== 'Diesel');
-
-// Print the array
-console.log(remainingCars);
+];
