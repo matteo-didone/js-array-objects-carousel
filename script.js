@@ -300,15 +300,8 @@ function reverseOrder()
     updateCarousel(); // Update the carousel with the reversed order
 }
 
-
-
 // Add click event listener to the reverse button
 reverseButton.addEventListener('click', reverseOrder);
-
-
-
-
-
 
 
 

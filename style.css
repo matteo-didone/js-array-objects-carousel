@@ -128,6 +128,7 @@ ul
     width: 80vw; /* Full Width */
     margin: 1rem 0; /* Add margin for spacing */
     overflow-x: auto; /* Enable horizontal scrolling */
+    padding-bottom: 2rem;
 }
 
 .thumbnails 
@@ -160,6 +161,7 @@ ul
 .title
 {
     font-size: 2rem; /* Font Size */
+    margin-top: 8rem; /* Add margin at the top for spacing */
     margin-bottom: 1rem; /* Add margin at the bottom for spacing */
     text-align: center; /* Align text to the center */
 }
@@ -167,6 +169,7 @@ ul
 .description
 {
     font-size: 1.5rem; /* Font Size */
+    margin-top: 1rem; /* Add margin at the top for spacing */
     margin-bottom: 1rem; /* Add margin at the bottom for spacing */
     text-align: center; /* Align text to the center */
 }
