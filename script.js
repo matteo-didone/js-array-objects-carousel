@@ -1,7 +1,3 @@
-// Given an array of literal objects with:
-// image URL
-// title
-// description
 // Create a carousel as shown in the attached photo.
 // Milestone 0:
 // As in the first carousel created, let's first focus on creating the static markup: build the container and insert the large image so that we can style the slider.
@@ -45,3 +41,4 @@ const images =
         description: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
     }
 ];
+
