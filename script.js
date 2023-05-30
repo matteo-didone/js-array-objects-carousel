@@ -1,10 +1,3 @@
-// Create a carousel as shown in the attached photo.
-// Milestone 0:
-// As in the first carousel created, let's first focus on creating the static markup: build the container and insert the large image so that we can style the slider.
-// Milestone 1: Now, remove the static content and dynamically populate the carousel using the array of literal objects.
-// Upon user click on the left or right arrows, the active image should become visible, and we should add the corresponding title and text.
-// Milestone 2:
-// Add the infinite loop functionality to the carousel. If the active thumbnail is the first one and the user clicks the up arrow, the activated thumbnail should be the last one, and vice versa for the last thumbnail if the user clicks the down arrow.
 // BONUS 1:
 // Add thumbnails and activate the corresponding image upon clicking.
 // BONUS 2:
@@ -41,4 +34,111 @@ const images =
         description: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
     }
 ];
+
+// Get the <ul> element
+const ul = document.querySelector('ul');
+
+// Define variable for the current active slide
+let currentSlide = 0;
+
+// Define variable for the total slide count
+const totalSlides = images.length;
+
+
+// Loop through the array of literal objects using forEach method
+// The forEach method takes a callback function as an argument and executes that callback function once for each element in the array
+// Loop through the array of literal objects using forEach method
+images.forEach((image) => {
+    // Create an <li> element
+    const li = document.createElement('li');
+    
+    // Create an <img> element
+    const img = document.createElement('img');
+    img.src = image.image; // Set the src attribute to the image URL
+    img.alt = image.title; // Set the alt attribute to the image title
+    
+    // Append the <img> element to the <li> element
+    li.appendChild(img);
+
+    // Create a <div> element for the title
+    const titleDiv = document.createElement('div');
+    titleDiv.classList.add('title');
+    titleDiv.textContent = image.title;
+    
+    // Append the titleDiv to the <li> element
+    li.appendChild(titleDiv);
+
+    // Create a <div> element for the description
+    const descriptionDiv = document.createElement('div');
+    descriptionDiv.classList.add('description');
+    descriptionDiv.textContent = image.description;
+    
+    // Append the descriptionDiv to the <li> element
+    li.appendChild(descriptionDiv);
+    
+    // Add class to the <li> element
+    li.classList.add('slide');
+    
+    // Append the <li> element to the <ul> element
+    ul.appendChild(li);
+});
+
+
+// Call the updateCarousel function to initialize the carousel with the first slide
+updateCarousel();
+
+// Define update carousel function
+function updateCarousel() 
+{
+    // Get all slides
+    const slides = document.querySelectorAll('.slide');
+    // Get the active slide
+    const activeSlide = slides[currentSlide];
+    // Get the title and description
+    const title = activeSlide.querySelector('.title');
+    // Get the description
+    const description = activeSlide.querySelector('.description');
+
+    // Loop through all slides and hide them
+    slides.forEach((slide) => {
+        slide.style.display = 'none';
+    });
+
+    // Show the active slide
+    activeSlide.style.display = 'block';
+
+    // Update the title and description
+    title.textContent = images[currentSlide].title;
+    description.textContent = images[currentSlide].description;
+}
+
+// Save the previous button in a variable
+const previousButton = document.getElementById('previous');
+
+// When I click on the left button, the slide should move to the left
+previousButton.addEventListener('click', () => {
+    // We decrement the currentSlide by 1
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    // and then take the modulus (%) of totalSlides. 
+    // This ensures that when the currentSlide reaches the first slide, it wraps around to the last slide again, creating the loop effect of the carousel.
+    updateCarousel();
+});
+
+// Save the next button in a variable
+const nextButton = document.getElementById('next');
+
+// When I click on the right button, the slide should move to the left
+nextButton.addEventListener('click', () => {
+    // We increment the currentSlide by 1
+    currentSlide = (currentSlide + 1) % totalSlides;
+    // and then take the modulus (%) of totalSlides. 
+    // This ensures that when the currentSlide reaches the last slide, it wraps around to the first slide again, creating the loop effect of the carousel.
+    updateCarousel();
+});
+
+
+
+
+
+
 

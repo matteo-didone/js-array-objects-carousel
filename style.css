@@ -1,6 +1,79 @@
-.container 
+/* Reset default box-sizing */
+*, *:before, *:after 
 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    box-sizing: border-box;
 }
+
+ul
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.container 
+{ 
+    margin: 0;
+}
+
+.carousel
+{
+    width: 100vw; /* Full Width */
+    height: 100vh;  /* Full Height */
+    position: relative;  /* Because our buttons will be positioned as "absolute" inside of it */
+}
+
+.slide
+{
+    position: absolute; /* Position Absolute */
+    inset: 0; /* Positioning the slide to the edges of the carousel */
+}
+
+.slide > img 
+{
+    display: block; /* Displaying the image as a block element so that I can easily resize it */
+    width: 100%; /* Full Width */
+    height: 100%; /* Full Height */
+    object-fit: cover; /* Making the image cover the entire slide, while preserving the aspect ratio */
+    object-position: center; /* Positioning the image in the center of the slide */
+}
+
+.carousel-button
+{
+    position: absolute; /* Position Absolute */
+    top: 50%; /* Positioning the button to the middle of the carousel */
+    transform: translateY(-50%); /* Positioning the button to the middle of the carousel */
+    background: none; /* Removing the background */
+    border: none; /* Removing the border */
+    cursor: pointer; /* Making the cursor a pointer */
+    font-size: 4rem; /* Font Size */
+    z-index: 2; /* Making sure that the buttons are on top of the slides */
+    color: rgb(255, 255, 255, .5); /* Setting the color of the buttons */
+    padding: 0 .5rem;
+    background-color: rgb(0, 0, 0, .1);
+}
+
+.carousel-button:hover, .carousel-button:focus
+{
+    color: white; 
+    background-color: rgb(0, 0, 0, .2)
+}
+
+.carousel-button:focus
+{
+    border: 1px solid black; /* Adding a border to the button when it is focused */
+}
+
+#previous
+{
+    left: 1rem; /* Positioning the button to the left of the carousel */
+}
+
+#next
+{
+    right: 1rem; /* Positioning the button to the right of the carousel */
+}
+
+
+
+
